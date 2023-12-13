@@ -9,12 +9,14 @@ export default function App() {
 
 
   return (
-      <div>
-        <div>
+      <div className='container-fluid'>
+        <div className='row'>
+          <div className='col-12'>
           <Navbar/>
-        </div>
-        <h1>App main</h1>
-        <PizzaNames/>
+          <h1>App main</h1>
+          <PizzaNames/>
+          </div>
+        </div>  
       </div>
   );
 }
