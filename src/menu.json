@@ -1,0 +1,64 @@
+{ 
+    "categories": [ 
+        {
+    "name":"Pizza",    
+    "items" : [ 
+        {
+            "id": 1,
+            "name":"Capriciossa",
+            "description":"tomato, mozzarella, ham, mushroom, artichoke"
+        },
+        {
+            "id": 2,
+            "name":"Margherita ",
+            "description":"tomato, mozzarella, basil"
+        },
+        {
+            "id": 3,
+            "name":"Calzone",
+            "description":" tomato, salami, ham, mozzarella, mushroom, parmesan, egg"
+        },
+        {
+            "id": 4,
+            "name":"Mexicana",
+            "description":"tomato, minced meat, mozzarella, pepper, chili pepper, beans, corn"
+        },
+        {
+            "id": 5,
+            "name":"Quattro Formaggi",
+            "description":"tomato, parmesan, fontina, mozzarella, feta cheese, basil"
+        }
+    ]
+    },
+    {
+    "name":"Grill",    
+    "items" : [
+        {
+            "id": 10,
+            "name":"Classic Burger",
+            "description":"iceberg lettuce, pickles, tomato, minced meat patty, bacon, cheddar, onion"
+        },
+        {
+            "id": 11,
+            "name":"Beef Burger ",
+            "description":"iceberg lettuce, pickles, tomato, beef patty, cheddar, onion"
+        },
+        {
+            "id": 12,
+            "name":"Chicken Burger",
+            "description":"iceberg lettuce, pickles, tomato, grilled chicken, gouda"
+        },
+        {
+            "id": 13,
+            "name":"Chicken Skewer",
+            "description":"marinaded chicken, pepper, onion, coriander"
+        },
+        {
+            "id": 14,
+            "name":" Mixed Meat Platter",
+            "description":"pork neck, pork belly, skewer, grilled sausage, kebab, burger, mushrooms, sauce"
+        }
+        ]
+    }
+]
+}
