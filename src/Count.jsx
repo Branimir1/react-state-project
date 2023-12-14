@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import jsonData from './menu.json';
+import styles from './mystyle.module.css'; // Import the CSS module
+import "bootstrap-icons/font/bootstrap-icons.css";
+
 
 function PizzaNames() {
   const [pizzaData, setPizzaData] = useState([]);
@@ -16,20 +19,24 @@ function PizzaNames() {
     setGrillData(grillCategory ? grillCategory.items : []);
   }, []);
 
+
   return (
-    <div>
-      <h5>Pizzas:</h5>
-      <ul>
+    <div className={styles.darkTheme}>
+      <h5>PIZZAS:</h5>
+      <ul className='list-group'>
         {pizzaData.map(item => (
-          <><li key={item.id}>{item.name}</li>
-          <li>{item.description}</li></>
+          <><li key={item.id} className='list-group-item text-bg-dark'>
+            {item.name.toString().toUpperCase()}<br/>{item.description}
+            <button className='btn btn-danger p-2'><i class="bi bi-cart2"></i> Buy</button>
+            </li>
+            </>
         ))}
       </ul>
-      <h5>Grill dishes:</h5>
-      <ul>
+      <h5>GRILL DISHES:</h5>
+      <ul className='list-group'>
         {grillData.map(item => (
-          <><li key={item.id}>{item.name}</li>
-          <li>{item.description}</li></>
+          <><li key={item.id} className='list-group-item text-bg-dark'>
+            {item.name.toString().toUpperCase()}<br/>{item.description}</li></>
         ))}
       </ul>
     </div>

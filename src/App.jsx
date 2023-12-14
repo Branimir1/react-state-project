@@ -13,7 +13,7 @@ export default function App() {
         <div className='row'>
           <div className='col-12'>
           <Navbar/>
-          <h1>App main</h1>
+          <h1>Hero Section</h1>
           <PizzaNames/>
           </div>
         </div>  

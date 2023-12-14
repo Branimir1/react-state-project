@@ -1,0 +1,29 @@
+.darkTheme {
+    background-color: #2a2727;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+ul {
+    color: white;
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+li {
+    color:white;
+}
+
+button {
+    float: right;
+}
+
+h5 {
+    text-align: left;
+    font-size: 22px;
+    font-weight: bold;
+    padding-top: 10px;
+    padding-left: 20px;
+    font-family: Georgia, serif;
+}
