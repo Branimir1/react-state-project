@@ -13,7 +13,9 @@ export default function App() {
         <div className='row'>
           <div className='col-12'>
           <Navbar/>
+          <div className='mt-5'>
           <h1>Hero Section</h1>
+          </div>
           <PizzaNames/>
           </div>
         </div>  
@@ -25,4 +27,5 @@ export default function App() {
   you should pass a callback function instead of state directly 
   u main appu:
   navbar, hero, ul pizze i grill, site info u footer working hours i lokacija
+  react hooks koje trebam state effect i context
   */
