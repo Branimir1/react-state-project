@@ -27,7 +27,7 @@ function PizzaNames() {
         {pizzaData.map(item => (
           <><li key={item.id} className='list-group-item text-bg-dark'>
             {item.name.toString().toUpperCase()}<br/>{item.description}
-            <button className='btn btn-danger p-2'><i class="bi bi-cart2"></i> Buy</button>
+            <button className='btn btn-danger p-2'><i class="bi bi-cart2"></i> Buy ({item.price})</button>
             </li>
             </>
         ))}
@@ -36,7 +36,9 @@ function PizzaNames() {
       <ul className='list-group'>
         {grillData.map(item => (
           <><li key={item.id} className='list-group-item text-bg-dark'>
-            {item.name.toString().toUpperCase()}<br/>{item.description}</li></>
+            {item.name.toString().toUpperCase()}<br/>{item.description}
+            <button className='btn btn-danger p-2'><i class="bi bi-cart2"></i> Buy ({item.price})</button>
+            </li></>
         ))}
       </ul>
     </div>

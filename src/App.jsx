@@ -1,18 +1,16 @@
 import './App.css'
 import React from 'react'
 import PizzaNames from './Count.jsx'
-import Navbar from './Navbar.jsx'
+import BasicNav from './Navbar.jsx'
 
 export default function App() {
 
   // <MenuItem name={pizze.name} description={pizze.description}/>
-
-
   return (
       <div className='container-fluid'>
         <div className='row'>
           <div className='col-12'>
-          <Navbar/>
+          <BasicNav/>
           <div className='mt-5'>
           <h1>Hero Section</h1>
           </div>

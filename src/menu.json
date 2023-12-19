@@ -6,27 +6,32 @@
         {
             "id": 1,
             "name":"Capriciossa 🍕",
-            "description":"tomato, mozzarella, ham, mushroom, artichoke"
+            "description":"tomato, mozzarella, ham, mushroom, artichoke",
+            "price":6
         },
         {
             "id": 2,
             "name":"Margherita 🍕",
-            "description":"tomato, mozzarella, basil"
+            "description":"tomato, mozzarella, basil",
+            "price":5
         },
         {
             "id": 3,
             "name":"Calzone 🍕",
-            "description":" tomato, salami, ham, mozzarella, mushroom, parmesan, egg"
+            "description":" tomato, salami, ham, mozzarella, mushroom, parmesan, egg",
+            "price":6
         },
         {
             "id": 4,
             "name":"Mexicana 🍕",
-            "description":"tomato, minced meat, mozzarella, pepper, chili pepper, beans, corn"
+            "description":"tomato, minced meat, mozzarella, pepper, chili pepper, beans, corn",
+            "price":5
         },
         {
             "id": 5,
             "name":"Quattro Formaggi 🍕",
-            "description":"tomato, parmesan, fontina, mozzarella, feta cheese, basil"
+            "description":"tomato, parmesan, fontina, mozzarella, feta cheese, basil",
+            "price":6
         }
     ]
     },
@@ -36,27 +41,32 @@
         {
             "id": 10,
             "name":"Classic Burger 🍔",
-            "description":"iceberg lettuce, pickles, tomato, minced meat patty, bacon, cheddar, onion"
+            "description":"iceberg lettuce, pickles, tomato, minced meat patty, bacon, cheddar, onion",
+            "price":6
         },
         {
             "id": 11,
             "name":"Beef Burger 🍔",
-            "description":"iceberg lettuce, pickles, tomato, beef patty, cheddar, onion"
+            "description":"iceberg lettuce, pickles, tomato, beef patty, cheddar, onion",
+            "price":7
         },
         {
             "id": 12,
             "name":"Chicken Burger 🍔",
-            "description":"iceberg lettuce, pickles, tomato, grilled chicken, gouda"
+            "description":"iceberg lettuce, pickles, tomato, grilled chicken, gouda",
+            "price":6
         },
         {
             "id": 13,
             "name":"Chicken Skewer 🍗",
-            "description":"marinaded chicken, pepper, onion, coriander"
+            "description":"marinaded chicken, pepper, onion, coriander",
+            "price":5
         },
         {
             "id": 14,
             "name":" Mixed Meat Platter 🍖🍗🥩",
-            "description":"pork neck, pork belly, skewer, grilled sausage, kebab, burger, mushrooms, sauce"
+            "description":"pork neck, pork belly, skewer, grilled sausage, kebab, burger, mushrooms, sauce",
+            "price":8
         }
         ]
     }
