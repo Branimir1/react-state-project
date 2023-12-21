@@ -32,7 +32,7 @@ function PizzaItem({ item }) {
       <li key={item.id} className='list-group-item text-bg-dark'>
             {item.name.toString().toUpperCase()}<br/>{item.description}
             <Button variant="danger" onClick={addToCart} >
-            <i class="bi bi-cart2"></i> Buy ({item.price})</Button>
+            <i class="bi bi-cart2"></i> {item.price} €</Button>
       </li>    
       </ul> 
     </div>

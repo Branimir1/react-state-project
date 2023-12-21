@@ -48,14 +48,14 @@ const ShoppingCartModal = () => {
       </Modal.Header>
       <Modal.Body>
         {state.cartItems.map((item) => (
-          <div key={item.id}>
+          <div className='fluid' key={item.id}>
             <p>{item.name}</p>
-            <p>Quantity: {item.quantity}</p>
-            <p>Price: ${item.price * item.quantity}</p>
+            <p>Price: {item.price * item.quantity}€</p>
              {/* Buttons for incrementing and decrementing quantity */}
              <Button variant="outline-primary" onClick={() => incrementQuantity(item.id)}>
               +
             </Button>
+            <p> Amount: {item.quantity}</p>
             <Button variant="outline-danger" onClick={() => decrementQuantity(item.id)}>
               -
             </Button>
@@ -63,7 +63,7 @@ const ShoppingCartModal = () => {
         ))}
       </Modal.Body>
       <Modal.Footer>
-        <p className='position-absolute start-0'>Total Amount: ${calculateTotalAmount()}</p>
+        <p className='position-absolute start-0'>Total Amount: {calculateTotalAmount()} €</p>
         <Button variant="secondary" onClick={handleClose}>
           Close
         </Button>
