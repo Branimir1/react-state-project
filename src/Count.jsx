@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import jsonData from './menu.json';
+import { Button } from 'react-bootstrap';
 import styles from './mystyle.module.css'; // Import the CSS module
 import "bootstrap-icons/font/bootstrap-icons.css";
 
@@ -27,7 +28,8 @@ function PizzaNames() {
         {pizzaData.map(item => (
           <><li key={item.id} className='list-group-item text-bg-dark'>
             {item.name.toString().toUpperCase()}<br/>{item.description}
-            <button className='btn btn-danger p-2'><i class="bi bi-cart2"></i> Buy ({item.price})</button>
+            <Button variant="danger">
+            <i class="bi bi-cart2"></i> Buy ({item.price}) </Button>
             </li>
             </>
         ))}

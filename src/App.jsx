@@ -1,23 +1,44 @@
 import './App.css'
-import React from 'react'
-import PizzaNames from './Count.jsx'
+import React, { useEffect, useState } from 'react';
+//import PizzaNames from './Count.jsx'
 import BasicNav from './Navbar.jsx'
+import PizzaItem from './chat_codes/PizzaItem.jsx';
+import { ShoppingCartProvider } from './chat_codes/ShoppingCartContext';
+import { fetchMenuItems } from './menuService';
 
 export default function App() {
-
+  const [menuItems, setMenuItems] = useState([]);
+  
+  useEffect(() => {
+    const fetchMenuData = async () => {
+      try {
+        const data = await fetchMenuItems();
+        const pizzaCategory = data.categories.find(category => category.name === 'Pizza');
+        setMenuItems(pizzaCategory ? pizzaCategory.items : []);
+        console.log(data);
+    // Set the state with the array of pizza items
+      } catch (error) {
+        // Handle the error if needed
+      }
+    };
+    fetchMenuData();
+  }, []);
+ 
   // <MenuItem name={pizze.name} description={pizze.description}/>
   return (
-      <div className='container-fluid'>
-        <div className='row'>
-          <div className='col-12'>
+        <ShoppingCartProvider>
           <BasicNav/>
-          <div className='mt-5'>
-          <h1>Hero Section</h1>
+         <div className='container'>
+            <div className='mt-5'>
+            <h1>Hero Section</h1>
+            </div>
+          {menuItems.map((menuItem) => (
+            <PizzaItem key={menuItems.id} item={menuItem}/>
+          ))
+          }
+          {console.log(menuItems)}
           </div>
-          <PizzaNames/>
-          </div>
-        </div>  
-      </div>
+        </ShoppingCartProvider>   
   );
 }
 

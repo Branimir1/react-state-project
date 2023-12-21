@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 
+//modal ovo radi pa cemo to ostaviti zasada tako
+// backup verzija
+
 const ShoppingCart = () => {
   const [showModal, setShowModal] = useState(false);
 
   const handleShow = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
 
+  // ono iz pizzaItem tj shopping cart modal 
+  //samo useShopping cart mogu ubaciti ovdje
   return (
     <div>
       <Button variant="dark" className="rounded bg-danger" onClick={handleShow}>
