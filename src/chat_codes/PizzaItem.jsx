@@ -5,22 +5,25 @@ import styles from '../mystyle.module.css'; // Import the CSS module
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 function PizzaItem({ item }) {
-  const { dispatch } = useShoppingCart();
-  //const [pizzaData, setPizzaData] = useState([]);
-/* 
-  useEffect(() => {
-    const pizzaCategory = jsonData.categories.find(category => category.name === 'Pizza');
-    // Set the state with the array of pizza items
-    setPizzaData(pizzaCategory ? pizzaCategory.items : []);
-  }, []);
-  */
+  const { dispatch, state } = useShoppingCart();
 
   const addToCart = () => {
+    //check if existing
+    const existingItem = state.cartItems.find((cartItem) => cartItem.id === item.id);
+    console.log(existingItem);
+
     // Dispatch an action to add the pizza item to the cart
-    dispatch({
-      type: 'ADD_TO_CART',
-      payload: { id: item.id, name: item.name, price: item.price, quantity: 1 },
+    if (existingItem) { 
+      dispatch ({
+      type: 'UPDATE_QUANTITY',
+      payload: { id: item.id, quantity: 1 },
     });
+    } else {
+       dispatch({
+        type: 'ADD_TO_CART',
+        payload: { id: item.id, name: item.name, price: item.price, quantity: 1 },
+      });
+    }
   };
  
   return (
@@ -48,3 +51,11 @@ function PizzaItem({ item }) {
         ))}
       </ul>*/
 export default PizzaItem;
+  //const [pizzaData, setPizzaData] = useState([]);
+/* 
+  useEffect(() => {
+    const pizzaCategory = jsonData.categories.find(category => category.name === 'Pizza');
+    // Set the state with the array of pizza items
+    setPizzaData(pizzaCategory ? pizzaCategory.items : []);
+  }, []);
+  */

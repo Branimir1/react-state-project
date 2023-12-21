@@ -8,6 +8,10 @@ const initialState = {
 // Create the context
 const ShoppingCartContext = createContext();
 
+const getTotalQuantity = (cartItems) => {
+  return cartItems.reduce((total, item) => total + item.quantity, 0);
+};
+
 // Define the reducer function to handle state changes
 const cartReducer = (state, action) => {
   switch (action.type) {
@@ -16,6 +20,19 @@ const cartReducer = (state, action) => {
         ...state,
         cartItems: [...state.cartItems, action.payload],
       };
+    case 'UPDATE_QUANTITY': 
+      const updatedCartItems = state.cartItems.map((item) =>
+          item.id === action.payload.id
+            ? { ...item, quantity: item.quantity + action.payload.quantity }
+            : item
+      );
+      // Filter out items with quantity 0 (or less)
+      const filteredCartItems = updatedCartItems.filter((item) => item.quantity > 0);
+
+      return {
+        ...state,
+        cartItems: filteredCartItems,
+      }
     // Add more cases for other actions (e.g., remove from cart, update quantity, etc.)
     default:
       return state;
@@ -39,5 +56,8 @@ export const useShoppingCart = () => {
   if (!context) {
     throw new Error('useShoppingCart must be used within a ShoppingCartProvider');
   }
-  return context;
+  return {
+    ...context,
+    getTotalQuantity: () => getTotalQuantity(context.state.cartItems),
+  };
 };
