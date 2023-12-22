@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, ListGroup, Badge } from 'react-bootstrap';
 import { useShoppingCart } from './ShoppingCartContext';
 import styles from '../mystyle.module.css'; // Import the CSS module
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -27,14 +27,28 @@ function PizzaItem({ item }) {
   };
  
   return (
-    <div >
-      <ul className='list-group'>
-      <li key={item.id} className='list-group-item text-bg-dark'>
-            {item.name.toString().toUpperCase()}<br/>{item.description}
-            <Button variant="danger" onClick={addToCart} >
-            <i class="bi bi-cart2"></i> {item.price} €</Button>
-      </li>    
-      </ul> 
+    <div>
+      <ListGroup as="ul">
+      <ListGroup.Item
+        as="li" variant='light'
+        className="d-flex justify-content-between align-items-start">
+        <div className="ms-2 me-auto">
+          <div className="fw-bold">{item.name.toString().toUpperCase()}</div>
+          {item.description}
+        </div>
+         {/*kad budem imao item u kosari    
+            <Button variant="danger"  
+          style={{ width: '80px', height: '40px', whiteSpace: 'nowrap' }}
+          onClick={addToCart}>
+            <i className="bi bi-cart2"></i> {item.price}€
+          </Button>*/}
+        <Button variant="danger"  
+          style={{ minWidth: '80px', maxWidth:'80px', whiteSpace: 'nowrap' }}
+          onClick={addToCart}>
+            <i className="bi bi-cart2"></i> {item.price}€
+          </Button>
+      </ListGroup.Item>
+    </ListGroup>
     </div>
   );
 }
@@ -59,3 +73,16 @@ export default PizzaItem;
     setPizzaData(pizzaCategory ? pizzaCategory.items : []);
   }, []);
   */
+
+/* 
+<div >
+        <ul className='list-group'>
+        <li key={item.id} className='list-group-item text-bg-dark'>
+              <p>{item.name.toString().toUpperCase()}</p>
+              <p>{item.description}</p>
+              <Button variant="danger" className='my-2' onClick={addToCart} >
+              <i class="bi bi-cart2"></i> {item.price} €</Button>
+        </li>    
+        </ul> 
+        </div>
+*/
