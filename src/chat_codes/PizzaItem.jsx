@@ -43,7 +43,7 @@ function PizzaItem({ item }) {
             <i className="bi bi-cart2"></i> {item.price}€
           </Button>*/}
         <Button variant="danger"  
-          style={{ minWidth: '80px', maxWidth:'80px', whiteSpace: 'nowrap' }}
+          style={{ minWidth: '80px', maxWidth:'80px', whiteSpace: 'nowrap', position:"relative"}}
           onClick={addToCart}>
             <i className="bi bi-cart2"></i> {item.price}€
           </Button>
@@ -52,6 +52,9 @@ function PizzaItem({ item }) {
     </div>
   );
 }
+
+export default PizzaItem;
+
  /* <ShoppingCartModal show={showModal} handleClose={closeModal} /> 
  <ul className='list-group'>
         {pizzaData.map(item => (
@@ -64,7 +67,6 @@ function PizzaItem({ item }) {
           </>
         ))}
       </ul>*/
-export default PizzaItem;
   //const [pizzaData, setPizzaData] = useState([]);
 /* 
   useEffect(() => {

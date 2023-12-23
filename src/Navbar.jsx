@@ -8,7 +8,7 @@ import ShoppingCartModal from './chat_codes/ShoppingCartModal';
 function BasicNav() {
   return (
     <Navbar expand="lg" className="bg-body-secondary">
-      <Container>
+      <Container >
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
@@ -23,7 +23,7 @@ function BasicNav() {
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
-        <Navbar.Brand href="#home">RB🍽️</Navbar.Brand>
+        <Navbar.Brand href="#home" className="mx-auto">RB🍽️</Navbar.Brand>
         <ShoppingCartModal/>
       </Container>
     </Navbar>
