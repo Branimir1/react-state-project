@@ -1,7 +1,6 @@
 import React from 'react';
-import { Button, ListGroup, Badge } from 'react-bootstrap';
+import { Button, ListGroup } from 'react-bootstrap';
 import { useShoppingCart } from './ShoppingCartContext';
-import styles from '../mystyle.module.css'; // Import the CSS module
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 function PizzaItem({ item }) {
@@ -36,7 +35,7 @@ function PizzaItem({ item }) {
           <div className="fw-bold">{item.name.toString().toUpperCase()}</div>
           {item.description}
         </div>
-         {/*kad budem imao item u kosari    
+         {/*   
             <Button variant="danger"  
           style={{ width: '80px', height: '40px', whiteSpace: 'nowrap' }}
           onClick={addToCart}>

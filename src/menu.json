@@ -31,42 +31,42 @@
             "id": 5,
             "name":"Quattro Formaggi 🍕",
             "description":"tomato, parmesan, fontina, mozzarella, feta cheese, basil",
-            "price":6
+            "price":5
         }
     ]
     },
     {
-    "name":"Grill",    
+    "name":"Burger",    
     "items" : [
         {
             "id": 10,
-            "name":"Classic Burger 🍔",
-            "description":"iceberg lettuce, pickles, tomato, minced meat patty, bacon, cheddar, onion",
-            "price":6
+            "name":"Hamburger 🍔",
+            "description":"lettuce, onion, minced meat, cucumber, tomato, sauce",
+            "price":5
         },
         {
             "id": 11,
-            "name":"Beef Burger 🍔",
-            "description":"iceberg lettuce, pickles, tomato, beef patty, cheddar, onion",
-            "price":7
+            "name":"Cheeseburger 🍔",
+            "description":"lettuce, onion, minced meat, cheese, cucumber, tomato, sauce",
+            "price":5
         },
         {
             "id": 12,
             "name":"Chicken Burger 🍔",
-            "description":"iceberg lettuce, pickles, tomato, grilled chicken, gouda",
-            "price":6
-        },
-        {
-            "id": 13,
-            "name":"Chicken Skewer 🍗",
-            "description":"marinaded chicken, pepper, onion, coriander",
+            "description":" lettuce, pickles, tomato, grilled chicken, cheese, sauce",
             "price":5
         },
         {
+            "id": 13,
+            "name":"Double Cheeseburger 🍔",
+            "description":"lettuce, onion, minced meat (x2), cheese(x2), cucumber, tomato, sauce",
+            "price":6
+        },
+        {
             "id": 14,
-            "name":" Mixed Meat Platter 🍖🍗🥩",
-            "description":"pork neck, pork belly, skewer, grilled sausage, kebab, burger, mushrooms, sauce",
-            "price":8
+            "name":" Pork Burger 🍔",
+            "description":"lettuce, onion, minced meat, cheese, cucumber, tomato, bacon, sauce",
+            "price":5
         }
         ]
     }
