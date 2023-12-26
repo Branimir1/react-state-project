@@ -33,7 +33,7 @@ export default function App() {
           <BasicNav/>
          <div className='container'>
          <h1>Hero Section</h1>
-            <Image src={pizzaImage} className="my-2" alt="Pizza" fluid style={{ maxWidth: '100%', maxHeight: '400px' }} /> 
+            <Image src={pizzaImage} className="my-2" alt="Pizza" fluid rounded style={{ maxWidth: '100%', maxHeight: '400px' }} /> 
             {/* slika pizze  <Image src=".img/pizza2" fluid />*/}
           {menuItems.map((menuItem) => (
             <PizzaItem key={menuItems.id} item={menuItem}/>
