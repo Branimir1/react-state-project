@@ -5,6 +5,9 @@ import BasicNav from './Navbar.jsx'
 import PizzaItem from './chat_codes/PizzaItem.jsx';
 import { ShoppingCartProvider } from './chat_codes/ShoppingCartContext';
 import { fetchMenuItems } from './menuService';
+import { Image } from 'react-bootstrap';
+import pizzaImage from './img/pizza2.jpg'; // Import the image
+import MyFooter from './Footer.jsx';
 
 export default function App() {
   const [menuItems, setMenuItems] = useState([]);
@@ -29,15 +32,18 @@ export default function App() {
         <ShoppingCartProvider>
           <BasicNav/>
          <div className='container'>
-            <div className='mt-5'>
-            <h1>Hero Section</h1>
-            </div>
+         <h1>Hero Section</h1>
+            <Image src={pizzaImage} className="my-2" alt="Pizza" fluid style={{ maxWidth: '100%', maxHeight: '400px' }} /> 
+            {/* slika pizze  <Image src=".img/pizza2" fluid />*/}
           {menuItems.map((menuItem) => (
             <PizzaItem key={menuItems.id} item={menuItem}/>
           ))
           }
+          {/* slika burgera i burger items sad ima 2 nacina jedan je da loopam kroz 5 elemenata a 
+          drugi da napravim 2 pizzaitem file-a sto mi bas nema puno funkcionalnog smisla*/}
           {console.log(menuItems)}
           </div>
+          <MyFooter/>
         </ShoppingCartProvider>   
   );
 }

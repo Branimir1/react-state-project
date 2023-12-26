@@ -73,8 +73,9 @@ const ShoppingCartModal = () => {
             <div className='ml-auto'>
                 <span className="fw-bold">
                   {item.name}</span>
+                   <span> {item.price * item.quantity}€</span>
               </div>
-              <div> {item.price * item.quantity}€</div>
+              
               {/* Buttons for incrementing and decrementing quantity */}
               <div className="d-flex align-items-center">
               <Button variant="outline-danger" onClick={() => decrementQuantity(item.id)}>

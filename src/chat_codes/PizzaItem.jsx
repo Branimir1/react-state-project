@@ -30,9 +30,9 @@ function PizzaItem({ item }) {
       <ListGroup as="ul">
       <ListGroup.Item
         as="li" variant='light'
-        className="d-flex justify-content-between align-items-start">
+        className="d-flex justify-content-between align-items-start w-md-50 w-lg-50">
         <div className="ms-2 me-auto">
-          <div className="fw-bold">{item.name.toString().toUpperCase()}</div>
+          <div className="fw-bold text-start">{item.name.toString().toUpperCase()}</div>
           {item.description}
         </div>
          {/*   
