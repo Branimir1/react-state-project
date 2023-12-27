@@ -27,22 +27,18 @@ function PizzaItem({ item }) {
  
   return (
     <div>
-      <ListGroup as="ul">
+      <ListGroup as="ul" className='my-2'>
       <ListGroup.Item
         as="li" variant='light'
         className="d-flex justify-content-between align-items-start w-md-50 w-lg-50">
         <div className="ms-2 me-auto">
           <div className="fw-bold text-start">{item.name.toString().toUpperCase()}</div>
-          {item.description}
+          <div className="text-start">{item.description}</div>
         </div>
-         {/*   
-            <Button variant="danger"  
-          style={{ width: '80px', height: '40px', whiteSpace: 'nowrap' }}
-          onClick={addToCart}>
-            <i className="bi bi-cart2"></i> {item.price}€
-          </Button>*/}
+
         <Button variant="danger"  
           style={{ minWidth: '80px', maxWidth:'80px', whiteSpace: 'nowrap', position:"relative"}}
+          className='my-2'
           onClick={addToCart}>
             <i className="bi bi-cart2"></i> {item.price}€
           </Button>
