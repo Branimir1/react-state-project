@@ -6,13 +6,13 @@ function MyFooter() {
   return (
     <Container>
       <Row sm={1} md={3}>
-        <Col className="my-2"> <i class="bi bi-geo-alt" style={{ fontSize: '24px' }}></i><br/>
+        <Col className="my-3"> <i class="bi bi-geo-alt" style={{ fontSize: '24px' }}></i><br/>
           <span className="fw-bold">LOCATION </span> <br/><span> Random ulica<br/> 10000 Zagreb, HR</span>
         </Col>
-        <Col className="my-2">  <i class="bi bi-telephone" style={{ fontSize: '24px' }}></i><br/>
+        <Col className="my-3">  <i class="bi bi-telephone" style={{ fontSize: '24px' }}></i><br/>
           <span className="fw-bold">CONTACT </span> <br/><span> +385112233</span>
         </Col>
-        <Col className="my-2"> <i class="bi bi-clock" style={{ fontSize: '24px' }}></i><br/>
+        <Col className="my-3"> <i class="bi bi-clock" style={{ fontSize: '24px' }}></i><br/>
           <span className="fw-bold">WORKING HOURS </span> <br/><span> Mon: CLOSED<br/>Tue-Sun: 10-24</span>
         </Col>
       </Row>

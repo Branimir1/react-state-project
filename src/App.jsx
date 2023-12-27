@@ -31,13 +31,11 @@ export default function App() {
   return (
         <ShoppingCartProvider>
           <BasicNav/>
-         <div className='container-md'>
+         <div className='container' style={{ maxWidth: '800px'}}>
          <h1>Hero Section</h1>
          {/* 
             <Image src={pizzaImage} className="my-2" alt="Pizza" fluid rounded style={{ maxWidth: '100%', maxHeight: '400px' }} /> 
-            
             slika pizze  <Image src=".img/pizza2" fluid />
-            
             <PizzaItem key={menuItems.id} item={menuItem}/>*/}
           {menuItems.map((category) => (
             <div key={category.name}>
@@ -55,17 +53,9 @@ export default function App() {
               </div>
             </div>
           ))}
-          </div>
           <MyFooter/>
+          </div>
         </ShoppingCartProvider>   
   );
 }
 
-/* if you ever need the old value to determine the new state value
-  you should pass a callback function instead of state directly 
-  u main appu:
-  navbar, hero, ul pizze i grill, site info u footer working hours i lokacija
-  react hooks koje trebam state effect i context
-  */
-/* slika burgera i burger items sad ima 2 nacina jedan je da loopam kroz 5 elemenata a 
-          drugi da napravim 2 pizzaitem file-a sto mi bas nema puno funkcionalnog smisla*/
