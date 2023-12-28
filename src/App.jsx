@@ -8,6 +8,7 @@ import { Image } from 'react-bootstrap';
 import pizzaImage from './img/pizza2.jpg'; // Import the image
 import burgerImage from './img/burger2.jpg';
 import MyFooter from './Footer.jsx';
+import MyHero from './Hero.jsx';
 
 export default function App() {
   const [menuItems, setMenuItems] = useState([]);
@@ -31,6 +32,7 @@ export default function App() {
   return (
         <ShoppingCartProvider>
           <BasicNav/>
+          <MyHero />
          <div className='container' style={{ maxWidth: '800px'}}>
          <h1>Hero Section</h1>
          {/* 
