@@ -29,8 +29,8 @@ const ShoppingCartModal = () => {
       payload: { id, quantity: -1 },
     });
   };
-
-  // Function to calculate the total amount
+ 
+  // Function to calculate the total amount 
   const calculateTotalAmount = () => {
     return state.cartItems.reduce((total, item) => {
       return total + item.quantity * item.price;
@@ -39,7 +39,7 @@ const ShoppingCartModal = () => {
 
   return (
   <div>
-    <Button variant="outline-primary" onClick={handleShow} style={{ position: 'relative' }}>
+    <Button variant="outline-primary" onClick={handleShow} >
         Check Cart <i class="bi bi-cart4"></i>
         {totalQuantity > 0 && (
     <Badge
@@ -53,7 +53,7 @@ const ShoppingCartModal = () => {
         height: "1.5rem",
         bottom: 0,
         right: 0,
-        transform: "translate(50%, 75%)",
+        transform: "translate(0%, 25%)",
       }}
     >
       {totalQuantity}

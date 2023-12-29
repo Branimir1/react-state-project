@@ -9,6 +9,8 @@ import pizzaImage from './img/pizza2.jpg'; // Import the image
 import burgerImage from './img/burger2.jpg';
 import MyFooter from './Footer.jsx';
 import MyHero from './Hero.jsx';
+import { BrowserRouter as Router } from 'react-router-dom';
+
 
 export default function App() {
   const [menuItems, setMenuItems] = useState([]);
@@ -17,8 +19,7 @@ export default function App() {
     const fetchMenuData = async () => {
       try {
         const data = await fetchMenuItems();
-        //const pizzaCategory = data.categories.find(category => category.name === 'Pizza');
-        //setMenuItems(pizzaCategory ? pizzaCategory.items : []);
+
         setMenuItems(data.categories);
         console.log(data);
     // Set the state with the array of pizza items
@@ -29,35 +30,44 @@ export default function App() {
     fetchMenuData();
   }, []);
  
+
   return (
-        <ShoppingCartProvider>
-          <BasicNav/>
+    <ShoppingCartProvider>
+      <Router>
+        <div id="home">
+          <BasicNav />
           <MyHero />
-         <div className='container' style={{ maxWidth: '800px'}}>
-         <h1>Hero Section</h1>
-         {/* 
-            <Image src={pizzaImage} className="my-2" alt="Pizza" fluid rounded style={{ maxWidth: '100%', maxHeight: '400px' }} /> 
-            slika pizze  <Image src=".img/pizza2" fluid />
-            <PizzaItem key={menuItems.id} item={menuItem}/>*/}
-          {menuItems.map((category) => (
-            <div key={category.name}>
-              {/*<h2>{category.name}</h2>*/}
-              {category.name === 'Pizza' && (
-              <Image src={pizzaImage} alt="Pizza" fluid rounded style={{ maxWidth: '100%', maxHeight: '400px' }} />
-              )}
-              {category.name === 'Burger' && (
-              <Image src={burgerImage} alt="Burger" fluid rounded style={{ maxWidth: '100%', maxHeight: '400px' }} />
-              )}
-              <div className="category-items">
-              {category.items.map((menuItem) => (
-                <PizzaItem key={menuItem.id} item={menuItem} />
-              ))}
-              </div>
-            </div>
-          ))}
-          <MyFooter/>
-          </div>
-        </ShoppingCartProvider>   
+        </div>
+        <div id="menu">
+          <MenuSection menuItems={menuItems} />
+        </div>
+        <div id="contact">
+          <MyFooter />
+        </div>
+      </Router>
+    </ShoppingCartProvider>
   );
 }
 
+// separate component for the Menu section
+function MenuSection({ menuItems }) {
+  return (
+    <div className='container' style={{ maxWidth: '800px' }}>
+      {menuItems.map((category) => (
+        <div id="menu-section" key={category.name}>
+          {category.name === 'Pizza' && (
+            <Image src={pizzaImage} alt="Pizza" fluid rounded style={{ maxWidth: '100%', maxHeight: '400px' }} />
+          )}
+          {category.name === 'Burger' && (
+            <Image src={burgerImage} alt="Burger" fluid rounded style={{ maxWidth: '100%', maxHeight: '400px' }} />
+          )}
+          <div className="category-items">
+            {category.items.map((menuItem) => (
+              <PizzaItem key={menuItem.id} item={menuItem} />
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}

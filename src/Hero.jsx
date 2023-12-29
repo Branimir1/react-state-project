@@ -1,8 +1,16 @@
-import React from 'react'
-import { Button } from 'react-bootstrap';
+import React, {useRef} from 'react'
+import Button from 'react-bootstrap/Button';
 import pizzaHero from './img/wallpaper_pizza.jpg';
 
 function MyHero() {
+
+    const menuSectionRef = useRef(null);
+
+    const scrollToMenu = () => {
+      if (menuSectionRef.current) {
+        menuSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
 
     const heroStyle = {
         backgroundImage: `url(${pizzaHero})`,
@@ -10,30 +18,47 @@ function MyHero() {
         backgroundPosition: 'center',
         position: 'relative',
         color: 'white',
-        padding: '100px 20px', // Adjust the padding as needed
+        padding: '160px 40px', // Adjust the padding as needed
+        zIndex:1 ,
       };
 
       const overlayStyle = {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
         position: 'absolute',
         top: 0,
         left: 0,
         width: '100%',
         height: '100%',
-        backgroundColor: 'rgba(0, 0, 0, 0.4)', // Adjust the alpha value for darkness
+        backgroundColor: 'rgba(0, 0, 0, 0.3)',
+        zIndex: 2,
       };
 
   return (
+    <>
     <div style={heroStyle}>
-      <div style={overlayStyle}></div>
-      <h1>Welcome to La Pizzeria</h1>
-      <span className=''>
-        This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.
-      </span>
-      <div className='py-3'>
-        <Button variant="danger">Learn more</Button>
+      <div style={overlayStyle}>
+      <h1 style= {{color:'white', fontWeight:'bold', zIndex: 3, paddingTop:"3rem"}}>
+        The most delicious pizzas and burgers in your region</h1>
+      <span className='my-1'>
+        Made with local organic ingrediants
+      </span><br/>
+      <Button variant="danger" onClick={scrollToMenu}
+      style={{zIndex: 4}}>
+          Order now</Button>
       </div>
     </div>
+    
+    <div id="menu-section" ref={menuSectionRef}>
+      <span style={{ color: '#495057', fontSize: '1.5rem' }} className="fw-bolder">
+        OUR MENU
+      </span>
+    </div>
+    </>
   )
 }
 
 export default MyHero
+
