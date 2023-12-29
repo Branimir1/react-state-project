@@ -36,8 +36,9 @@ export default function App() {
       <Router>
         <div id="home">
           <BasicNav />
-          <MyHero />
+          
         </div>
+        <MyHero />
         <div id="menu">
           <MenuSection menuItems={menuItems} />
         </div>

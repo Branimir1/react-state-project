@@ -18,7 +18,7 @@ function MyHero() {
         backgroundPosition: 'center',
         position: 'relative',
         color: 'white',
-        padding: '160px 40px', // Adjust the padding as needed
+        padding: '200px 30px', // Adjust the padding as needed
         zIndex:1 ,
       };
 
@@ -43,7 +43,7 @@ function MyHero() {
       <h1 style= {{color:'white', fontWeight:'bold', zIndex: 3, paddingTop:"3rem"}}>
         The most delicious pizzas and burgers in your region</h1>
       <span className='my-1'>
-        Made with local organic ingrediants
+        Made with local organic ingredients
       </span><br/>
       <Button variant="danger" onClick={scrollToMenu}
       style={{zIndex: 4}}>
