@@ -1,5 +1,5 @@
 
-import { Nav, Navbar, Container, Col, Row } from 'react-bootstrap';
+import { Nav, Navbar, Container } from 'react-bootstrap';
 import ShoppingCartModal from './chat_codes/ShoppingCartModal';
 
 function BasicNav() {
@@ -13,6 +13,7 @@ function BasicNav() {
   // };
 
   return (
+
     <Navbar className="bg-body-tertiary fixed-top">
       <Container>
           <Nav>
