@@ -20,19 +20,32 @@ const cartReducer = (state, action) => {
         ...state,
         cartItems: [...state.cartItems, action.payload],
       };
-    case 'UPDATE_QUANTITY': 
+    case 'UPDATE_QUANTITY':
       const updatedCartItems = state.cartItems.map((item) =>
-          item.id === action.payload.id
-            ? { ...item, quantity: item.quantity + action.payload.quantity }
-            : item
+        item.id === action.payload.id
+          ? { ...item, quantity: item.quantity + action.payload.quantity }
+          : item
       );
       // Filter out items with quantity 0 (or less)
       const filteredCartItems = updatedCartItems.filter((item) => item.quantity > 0);
-
       return {
         ...state,
         cartItems: filteredCartItems,
       }
+
+      case 'SET_SUCCESS_MESSAGE':
+      return {
+        ...state,
+        showSuccessMessage: true,
+      };
+
+    case 'RESET_SUCCESS_MESSAGE':
+      return {
+        ...state,
+        showSuccessMessage: false,
+      };
+
+
     // Add more cases for other actions (e.g., remove from cart, update quantity, etc.)
     // add remove from cart
     default:

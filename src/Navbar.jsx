@@ -1,16 +1,9 @@
+// navbar.jsx
 
-import { Nav, Navbar, Container } from 'react-bootstrap';
-import ShoppingCartModal from './chat_codes/ShoppingCartModal';
+import { Nav, Navbar, Container, Alert } from 'react-bootstrap';
+import ShoppingCartModal from './components/ShoppingCartModal';
 
-function BasicNav() {
-
-  // const handleNavLinkClick = () => {
-  //   // Close the Navbar when a link is clicked
-  //   const navbarToggle = document.querySelector('.navbar-toggler');
-  //   if (navbarToggle) {
-  //     navbarToggle.click();
-  //   }
-  // };
+function BasicNav({ handleShowSuccessMessage }) {
 
   return (
 
@@ -21,7 +14,7 @@ function BasicNav() {
             <Nav.Link href="#menu" >Menu</Nav.Link>
             <Nav.Link href="#contact" >Contact</Nav.Link>         
           </Nav>    
-          <ShoppingCartModal />
+          <ShoppingCartModal handleShowSuccessMessage={handleShowSuccessMessage} />
       </Container>
     </Navbar>
   );

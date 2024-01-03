@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
-import { Modal, Button, Badge, ListGroup, Form, Alert } from 'react-bootstrap';
+// shoppingcartmodal.jsx
+
+import React, { useState, useEffect } from 'react';
+import { Modal, Button, Badge, ListGroup, Form } from 'react-bootstrap';
 import { useShoppingCart } from './ShoppingCartContext';
 import { firestore } from '../firebase';
 import { collection, addDoc } from "firebase/firestore"; // Import specific functions
 
-const ShoppingCartModal = () => {
+function ShoppingCartModal({ handleShowSuccessMessage }) {
   const [showModal, setShowModal] = useState(false);
   const { state, dispatch, getTotalQuantity } = useShoppingCart();
   const [validated, setValidated] = useState(false);
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false); // New state for success message
-
+  //const [showSuccessMessage, setShowSuccessMessage] = useState(false); // New state for success message
+  console.log(handleShowSuccessMessage);
+  //passing ovog sranja radi u logu
 
   const totalQuantity = getTotalQuantity();
   // show and hide modal
@@ -24,56 +27,99 @@ const ShoppingCartModal = () => {
   };
 
   //test 1
+  // const handleSubmit = (event) => {
+  //   //  validation logic 
+  //   const form = event.currentTarget;
+  //   if (form.checkValidity() === false) {
+  //     event.preventDefault();
+  //     event.stopPropagation();
+  //   }
+  //   // If the form is valid, proceed with submission
+  //   setValidated(true);
+
+  //   //order submission
+  //   handleSubmitAsync(event).then(() => {
+  //     console.log('Order requesting!');
+  //      // if successful submitting add a success message
+  //   });
+  // };
+
+  // const handleSubmitAsync = async () => {
+  //   try {
+  //     const db = firestore;
+
+  //     // Collect order data
+  //     const orderData = {
+  //       items: state.cartItems.map(item => ({ name: item.name, quantity: item.quantity })),
+  //       totalAmount: calculateTotalAmount(),
+  //       userName: document.getElementById('formName').value,
+  //       address: document.getElementById('formAddress').value,
+  //       city: document.getElementById('formCity').value,
+  //     };
+
+  //     // Use the `collection` and `addDoc` functions
+  //     const ordersCollection = collection(db, 'orders');
+  //     await addDoc(ordersCollection, orderData);
+
+  //     console.log('Order submitted successfully!');
+  //     // dispatch({ type: 'RESET_CART' });
+  //     // Display success message, close the modal, and reset the count of items
+  //     // Set showSuccessMessage in the context
+  //     dispatch({ type: 'SET_SUCCESS_MESSAGE' });     
+  //     // Close the modal after submitting 
+  //     handleClose();
+
+  //     // setShowSuccessMessage(true); 
+  //     // setTimeout(() => {
+  //     //   setShowSuccessMessage(false);
+  //     // }, 9000);
+
+  //   } catch (error) {
+  //     console.error('Error submitting order:', error.message);
+  //   }
+  // };
+
+  //test 2
   const handleSubmit = (event) => {
-    //  validation logic 
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     }
-    // If the form is valid, proceed with submission
     setValidated(true);
-
-    //order submission
-    handleSubmitAsync(event).then(() => {
-      console.log('Order requesting!');
-       // if successful submitting add a success message
-    });
   };
 
-  const handleSubmitAsync = async () => {
-    try {
-      const db = firestore;
+  useEffect(() => {
+    const submitOrder = async () => {
+      try {
+        const db = firestore;
 
-      // Collect order data
-      const orderData = {
-        items: state.cartItems.map(item => ({ name: item.name, quantity: item.quantity })),
-        totalAmount: calculateTotalAmount(),
-        userName: document.getElementById('formName').value,
-        address: document.getElementById('formAddress').value,
-        city: document.getElementById('formCity').value,
-      };
+        const orderData = {
+          items: state.cartItems.map(item => ({ name: item.name, quantity: item.quantity })),
+          totalAmount: calculateTotalAmount(),
+          userName: document.getElementById('formName').value,
+          address: document.getElementById('formAddress').value,
+          city: document.getElementById('formCity').value,
+        };
 
-      // Use the `collection` and `addDoc` functions
-      const ordersCollection = collection(db, 'orders');
-      await addDoc(ordersCollection, orderData);
+        const ordersCollection = collection(db, 'orders');
+        await addDoc(ordersCollection, orderData);
 
-      console.log('Order submitted successfully!');
-      // dispatch({ type: 'RESET_CART' });
-      // Display success message, close the modal, and reset the count of items
-           
-      // Close the modal after submitting 
-      handleClose();
+        console.log('Order submitted successfully!');
+        dispatch({ type: 'SET_SUCCESS_MESSAGE' });
+        handleShowSuccessMessage();
 
-      setShowSuccessMessage(true); 
-      setTimeout(() => {
-        setShowSuccessMessage(false);
-      }, 9000);
+        handleClose();
+      } catch (error) {
+        console.error('Error submitting order:', error.message);
+      }
+    };
 
-    } catch (error) {
-      console.error('Error submitting order:', error.message);
+    if (validated) {
+      submitOrder();
     }
-  };
+  }, [validated, state.cartItems, dispatch, handleShowSuccessMessage]);
+ //dependency array
 
   const decrementQuantity = (id) => {
     dispatch({
@@ -213,29 +259,7 @@ const ShoppingCartModal = () => {
             </Form>
         </Modal.Body>
         </Modal>
-        {/* tu bi mogao staviti name adress i radio button */}
-        {/* <Modal.Footer>
-          <div className='position-absolute start-0 px-3'>
-            <span className="fw-bold">
-              Total Amount: {calculateTotalAmount()} €</span>
-          </div>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleSubmit}> 
-            Submit
-          </Button>
-        </Modal.Footer> */}
 
-        {/* Success message pokazuje se u navbaru */}
-      <Alert
-        show={showSuccessMessage}
-        variant="success"
-        onClose={() => setShowSuccessMessage(false)}
-        dismissible 
-        style={{ width: '100%' }}>
-        Order placed successfully!
-      </Alert> 
     </div>
   );
 }
