@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, Button, Badge, ListGroup, Form } from 'react-bootstrap';
+import { Modal, Button, Badge, ListGroup, Form, Alert } from 'react-bootstrap';
 import { useShoppingCart } from './ShoppingCartContext';
 import { firestore } from '../firebase';
 import { collection, addDoc } from "firebase/firestore"; // Import specific functions
@@ -7,9 +7,11 @@ import { collection, addDoc } from "firebase/firestore"; // Import specific func
 const ShoppingCartModal = () => {
   const [showModal, setShowModal] = useState(false);
   const { state, dispatch, getTotalQuantity } = useShoppingCart();
+  const [validated, setValidated] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false); // New state for success message
+
 
   const totalQuantity = getTotalQuantity();
-
   // show and hide modal
   const handleShow = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
@@ -21,17 +23,21 @@ const ShoppingCartModal = () => {
     });
   };
 
-  // function handleSubmit() {
-  //   return
-  // };
   //test 1
-  const handleSubmit = () => {
-    // ... existing code ...
+  const handleSubmit = (event) => {
+    //  validation logic 
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    // If the form is valid, proceed with submission
+    setValidated(true);
 
-    handleSubmitAsync().then(() => {
-      // This block will execute after the asynchronous operation is complete
-      console.log('Order attempted successfully!');
-      handleClose(); // Close the modal after submitting
+    //order submission
+    handleSubmitAsync(event).then(() => {
+      console.log('Order requesting!');
+       // if successful submitting add a success message
     });
   };
 
@@ -48,14 +54,22 @@ const ShoppingCartModal = () => {
         city: document.getElementById('formCity').value,
       };
 
-    // Use the `collection` and `addDoc` functions
-    const ordersCollection = collection(db, 'orders');
-    await addDoc(ordersCollection, orderData);
+      // Use the `collection` and `addDoc` functions
+      const ordersCollection = collection(db, 'orders');
+      await addDoc(ordersCollection, orderData);
 
-    console.log('Order submitted successfully!');
-
-      // Close the modal after submitting
+      console.log('Order submitted successfully!');
+      // dispatch({ type: 'RESET_CART' });
+      // Display success message, close the modal, and reset the count of items
+           
+      // Close the modal after submitting 
       handleClose();
+
+      setShowSuccessMessage(true); 
+      setTimeout(() => {
+        setShowSuccessMessage(false);
+      }, 9000);
+
     } catch (error) {
       console.error('Error submitting order:', error.message);
     }
@@ -77,6 +91,8 @@ const ShoppingCartModal = () => {
 
   return (
     <div>
+
+      {/* button for navbar */}
       <Button variant="outline-primary" onClick={handleShow} >
         Check Cart <i className="bi bi-cart4"></i>
         {totalQuantity > 0 && (
@@ -130,42 +146,75 @@ const ShoppingCartModal = () => {
           </ListGroup>
 
           {/* Form for user's name and address */}
-          <Form className='py-2'>
-            <Form.Group controlId="formName">
-              <Form.Label className='px-2 pt-1 fw-bold'>Delivery Information</Form.Label>
+          <Form noValidate validated={validated} onSubmit={handleSubmit} className='py-1'>
+            {/* <Form.Group controlId="validationCustomUsername"> */}
+            <Form.Group>
+              <Form.Label className='px-2 py-1 fw-bold'>Delivery Information</Form.Label>
               <Form.Control
                 type="text"
                 label="name"
+                id="formName"
                 placeholder="Enter your name"
+                required
               // Add any other required properties or validation as needed
               />
+              <Form.Control.Feedback type="invalid">
+                Please provide a name.
+              </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group controlId="formAddress" className='py-2'>
+            <Form.Group className='my-2'>
+            {/* <Form.Group controlId="validationCustomAddress" className='py-2'> */}
               <Form.Control
                 type="text"
                 label="address"
+                id="formAddress"
                 placeholder="Enter delivery address"
                 required
               // Add any other required properties or validation as needed
               />
+              <Form.Control.Feedback type="invalid">
+                Please provide an address.
+              </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group controlId="formCity">
+            <Form.Group>
+            {/* <Form.Group controlId="validationCustomCity" className='mb-2'> */}
               <Form.Control
                 type="text"
                 label="city"
+                id="formCity"
                 placeholder="Enter city"
                 required
               // Add any other required properties or validation as needed
               />
+              <Form.Control.Feedback type="invalid">
+                Please provide a city.
+              </Form.Control.Feedback>
             </Form.Group>
 
-          </Form>
+            <Form.Group className='mt-3'>
+            <div className='row'>
+              <div className='col-6'>
+                <span className="fw-bold mx-2">
+                  Total Amount: {calculateTotalAmount()} €</span>
+              </div>
+              <div className='col-6 d-flex justify-content-end'>
+              <Button variant="secondary" onClick={handleClose} className='mx-2'>
+                  Close
+                </Button>
+              <Button variant="primary" type="submit" > {/* onClick={handleSubmit} */}
+                  Submit
+                </Button>
+              </div>
+            </div>
+            </Form.Group>
 
+            </Form>
         </Modal.Body>
+        </Modal>
         {/* tu bi mogao staviti name adress i radio button */}
-        <Modal.Footer>
+        {/* <Modal.Footer>
           <div className='position-absolute start-0 px-3'>
             <span className="fw-bold">
               Total Amount: {calculateTotalAmount()} €</span>
@@ -173,11 +222,20 @@ const ShoppingCartModal = () => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleSubmit}> {/* tu bi mogao staviti name adress i radio button */}
+          <Button variant="primary" onClick={handleSubmit}> 
             Submit
           </Button>
-        </Modal.Footer>
-      </Modal>
+        </Modal.Footer> */}
+
+        {/* Success message pokazuje se u navbaru */}
+      <Alert
+        show={showSuccessMessage}
+        variant="success"
+        onClose={() => setShowSuccessMessage(false)}
+        dismissible 
+        style={{ width: '100%' }}>
+        Order placed successfully!
+      </Alert> 
     </div>
   );
 }

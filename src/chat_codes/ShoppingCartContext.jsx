@@ -34,6 +34,7 @@ const cartReducer = (state, action) => {
         cartItems: filteredCartItems,
       }
     // Add more cases for other actions (e.g., remove from cart, update quantity, etc.)
+    // add remove from cart
     default:
       return state;
   }
