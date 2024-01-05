@@ -32,7 +32,7 @@ const cartReducer = (state, action) => {
         ...state,
         cartItems: filteredCartItems,
       }
-
+//ovo ne koristim zasad
       case 'SET_SUCCESS_MESSAGE':
       return {
         ...state,

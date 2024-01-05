@@ -3,21 +3,20 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Button, Badge, ListGroup, Form } from 'react-bootstrap';
 import { useShoppingCart } from './ShoppingCartContext';
-import { firestore } from '../firebase';
+import { db } from '../firebase';
 import { collection, addDoc } from "firebase/firestore"; // Import specific functions
 
 function ShoppingCartModal({ handleShowSuccessMessage }) {
   const [showModal, setShowModal] = useState(false);
   const { state, dispatch, getTotalQuantity } = useShoppingCart();
   const [validated, setValidated] = useState(false);
-  //const [showSuccessMessage, setShowSuccessMessage] = useState(false); // New state for success message
-  console.log(handleShowSuccessMessage);
-  //passing ovog sranja radi u logu
+
 
   const totalQuantity = getTotalQuantity();
   // show and hide modal
   const handleShow = () => setShowModal(true);
-  const handleClose = () => setShowModal(false);
+  const handleClose = () => { setShowModal(false); }
+  // ovo gore radi
 
   const incrementQuantity = (id) => {
     dispatch({
@@ -27,99 +26,61 @@ function ShoppingCartModal({ handleShowSuccessMessage }) {
   };
 
   //test 1
-  // const handleSubmit = (event) => {
-  //   //  validation logic 
-  //   const form = event.currentTarget;
-  //   if (form.checkValidity() === false) {
-  //     event.preventDefault();
-  //     event.stopPropagation();
-  //   }
-  //   // If the form is valid, proceed with submission
-  //   setValidated(true);
-
-  //   //order submission
-  //   handleSubmitAsync(event).then(() => {
-  //     console.log('Order requesting!');
-  //      // if successful submitting add a success message
-  //   });
-  // };
-
-  // const handleSubmitAsync = async () => {
-  //   try {
-  //     const db = firestore;
-
-  //     // Collect order data
-  //     const orderData = {
-  //       items: state.cartItems.map(item => ({ name: item.name, quantity: item.quantity })),
-  //       totalAmount: calculateTotalAmount(),
-  //       userName: document.getElementById('formName').value,
-  //       address: document.getElementById('formAddress').value,
-  //       city: document.getElementById('formCity').value,
-  //     };
-
-  //     // Use the `collection` and `addDoc` functions
-  //     const ordersCollection = collection(db, 'orders');
-  //     await addDoc(ordersCollection, orderData);
-
-  //     console.log('Order submitted successfully!');
-  //     // dispatch({ type: 'RESET_CART' });
-  //     // Display success message, close the modal, and reset the count of items
-  //     // Set showSuccessMessage in the context
-  //     dispatch({ type: 'SET_SUCCESS_MESSAGE' });     
-  //     // Close the modal after submitting 
-  //     handleClose();
-
-  //     // setShowSuccessMessage(true); 
-  //     // setTimeout(() => {
-  //     //   setShowSuccessMessage(false);
-  //     // }, 9000);
-
-  //   } catch (error) {
-  //     console.error('Error submitting order:', error.message);
-  //   }
-  // };
-
-  //test 2
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
+    //stop from refreshing
+    event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
-      event.preventDefault();
+      //ovo radi ok zasad
       event.stopPropagation();
+      setValidated(true);
+      return;
     }
-    setValidated(true);
-  };
 
-  useEffect(() => {
-    const submitOrder = async () => {
+    //setValidated(true);
+    // If the form is valid, proceed with the asynchronous order submission
+    if (form.checkValidity()) {
       try {
-        const db = firestore;
-
-        const orderData = {
-          items: state.cartItems.map(item => ({ name: item.name, quantity: item.quantity })),
-          totalAmount: calculateTotalAmount(),
-          userName: document.getElementById('formName').value,
-          address: document.getElementById('formAddress').value,
-          city: document.getElementById('formCity').value,
-        };
-
-        const ordersCollection = collection(db, 'orders');
-        await addDoc(ordersCollection, orderData);
-
-        console.log('Order submitted successfully!');
-        dispatch({ type: 'SET_SUCCESS_MESSAGE' });
-        handleShowSuccessMessage();
-
-        handleClose();
+        await submitOrder();
+        console.log('Order requested!');
       } catch (error) {
         console.error('Error submitting order:', error.message);
       }
-    };
-
-    if (validated) {
-      submitOrder();
     }
-  }, [validated, state.cartItems, dispatch, handleShowSuccessMessage]);
- //dependency array
+  };
+
+
+  // Asynchronous order submission
+  const submitOrder = async () => {
+    try {
+      //const db = firestore; ne trebam jer importam direktno
+
+      const orderData = {
+        items: state.cartItems.map(item => ({ name: item.name, quantity: item.quantity })),
+        totalAmount: calculateTotalAmount(),
+        userName: document.getElementById('formName').value,
+        address: document.getElementById('formAddress').value,
+        city: document.getElementById('formCity').value,
+      };
+
+      const ordersCollection = collection(db, 'orders');
+      await addDoc(ordersCollection, orderData); 
+      //add doc, add to collection
+
+      console.log('Order submitted successfully!');
+      handleClose();
+
+      handleShowSuccessMessage();
+
+      //dispatch({ type: 'SET_SUCCESS_MESSAGE' });
+      return { success: true };
+
+    } catch (error) {
+      console.error('Error submitting order:', error.message);
+      return { success: false, error: error.message };
+    }
+  };
+
 
   const decrementQuantity = (id) => {
     dispatch({
@@ -193,7 +154,6 @@ function ShoppingCartModal({ handleShowSuccessMessage }) {
 
           {/* Form for user's name and address */}
           <Form noValidate validated={validated} onSubmit={handleSubmit} className='py-1'>
-            {/* <Form.Group controlId="validationCustomUsername"> */}
             <Form.Group>
               <Form.Label className='px-2 py-1 fw-bold'>Delivery Information</Form.Label>
               <Form.Control
@@ -202,7 +162,6 @@ function ShoppingCartModal({ handleShowSuccessMessage }) {
                 id="formName"
                 placeholder="Enter your name"
                 required
-              // Add any other required properties or validation as needed
               />
               <Form.Control.Feedback type="invalid">
                 Please provide a name.
@@ -210,14 +169,12 @@ function ShoppingCartModal({ handleShowSuccessMessage }) {
             </Form.Group>
 
             <Form.Group className='my-2'>
-            {/* <Form.Group controlId="validationCustomAddress" className='py-2'> */}
               <Form.Control
                 type="text"
                 label="address"
                 id="formAddress"
                 placeholder="Enter delivery address"
                 required
-              // Add any other required properties or validation as needed
               />
               <Form.Control.Feedback type="invalid">
                 Please provide an address.
@@ -225,14 +182,12 @@ function ShoppingCartModal({ handleShowSuccessMessage }) {
             </Form.Group>
 
             <Form.Group>
-            {/* <Form.Group controlId="validationCustomCity" className='mb-2'> */}
               <Form.Control
                 type="text"
                 label="city"
                 id="formCity"
                 placeholder="Enter city"
                 required
-              // Add any other required properties or validation as needed
               />
               <Form.Control.Feedback type="invalid">
                 Please provide a city.
@@ -240,28 +195,29 @@ function ShoppingCartModal({ handleShowSuccessMessage }) {
             </Form.Group>
 
             <Form.Group className='mt-3'>
-            <div className='row'>
-              <div className='col-6'>
-                <span className="fw-bold mx-2">
-                  Total Amount: {calculateTotalAmount()} €</span>
+              <div className='row'>
+                <div className='col-6'>
+                  <span className="fw-bold mx-2">
+                    Total Amount: {calculateTotalAmount()} €</span>
+                </div>
+                <div className='col-6 d-flex justify-content-end'>
+                  <Button variant="secondary" onClick={handleClose} className='mx-2'>
+                    Close
+                  </Button>
+                  <Button variant="primary" type="submit" >
+                    Submit
+                  </Button>
+                </div>
               </div>
-              <div className='col-6 d-flex justify-content-end'>
-              <Button variant="secondary" onClick={handleClose} className='mx-2'>
-                  Close
-                </Button>
-              <Button variant="primary" type="submit" > {/* onClick={handleSubmit} */}
-                  Submit
-                </Button>
-              </div>
-            </div>
             </Form.Group>
 
-            </Form>
+          </Form>
         </Modal.Body>
-        </Modal>
+      </Modal>
 
     </div>
   );
 }
 
 export default ShoppingCartModal;
+

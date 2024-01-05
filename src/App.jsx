@@ -14,13 +14,13 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 export default function App() {
   const [menuItems, setMenuItems] = useState([]);
-  const [showSuccessMessage, setShowSuccessMessage] = useState(true);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const handleShowSuccessMessage = () => {
     setShowSuccessMessage(true);
     setTimeout(() => {
       setShowSuccessMessage(false);
-    }, 9000); // Adjust the duration as needed
+    }, 5000); // Adjust the duration as needed
   };
 
   useEffect(() => {
@@ -31,6 +31,7 @@ export default function App() {
         //console.log(data);
         // Set the state with the array of pizza items
       } catch (error) {
+        console.log("Error catching data:", error);
         // Handle the error if needed
       }
     };
@@ -41,16 +42,17 @@ export default function App() {
     <ShoppingCartProvider>
       <Router>
       <div label="alert">
-          {/* Success style={{ position: 'fixed', top: 0, right: 0, width: '100%' , zIndex:60}} */}
-          <Alert
+           {/* Render the Alert only when showSuccessMessage is true */}
+           {showSuccessMessage && (
+            <Alert
               variant="success"
-              onClose={() => setShowSuccessMessage(false) }
-              dismissible 
+              onClose={() => setShowSuccessMessage(false)}
+              dismissible
               style={{ position: 'fixed', top: '15%', right: '0', width: '100%', zIndex: 60 }}
-
             >
               Order placed successfully!
             </Alert>
+          )}
         </div>
         <div id="home">
         <BasicNav handleShowSuccessMessage={handleShowSuccessMessage} />
