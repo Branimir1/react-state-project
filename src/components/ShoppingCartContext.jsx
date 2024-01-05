@@ -26,24 +26,35 @@ const cartReducer = (state, action) => {
           ? { ...item, quantity: item.quantity + action.payload.quantity }
           : item
       );
+
+    //novi case
+    
+
       // Filter out items with quantity 0 (or less)
       const filteredCartItems = updatedCartItems.filter((item) => item.quantity > 0);
       return {
         ...state,
         cartItems: filteredCartItems,
       }
-//ovo ne koristim zasad
-      case 'SET_SUCCESS_MESSAGE':
+
+      case 'RESET_CART_ITEMS':
       return {
         ...state,
-        showSuccessMessage: true,
+        cartItems: [],
       };
 
-    case 'RESET_SUCCESS_MESSAGE':
-      return {
-        ...state,
-        showSuccessMessage: false,
-      };
+    //ovo ne koristim zasad a i nema potrebe
+    //   case 'SET_SUCCESS_MESSAGE':
+    //   return {
+    //     ...state,
+    //     showSuccessMessage: true,
+    //   };
+
+    // case 'RESET_SUCCESS_MESSAGE':
+    //   return {
+    //     ...state,
+    //     showSuccessMessage: false,
+    //   };
 
 
     // Add more cases for other actions (e.g., remove from cart, update quantity, etc.)

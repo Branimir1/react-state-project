@@ -66,6 +66,8 @@ function ShoppingCartModal({ handleShowSuccessMessage }) {
       const ordersCollection = collection(db, 'orders');
       await addDoc(ordersCollection, orderData); 
       //add doc, add to collection
+      // Reset cart items after successful order submission
+      dispatch({ type: 'RESET_CART_ITEMS' });
 
       console.log('Order submitted successfully!');
       handleClose();
