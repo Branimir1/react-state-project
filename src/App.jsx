@@ -9,7 +9,8 @@ import { Alert } from 'react-bootstrap';
 import MenuSection from './MenuSection.jsx'; // Import the MenuSection component
 import MyFooter from './Footer.jsx';
 import MyHero from './Hero.jsx';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Login } from './Login.jsx';
 
 
 export default function App() {
@@ -41,30 +42,37 @@ export default function App() {
   return (
     <ShoppingCartProvider>
       <Router>
-      <div label="alert">
-           {/* Render the Alert only when showSuccessMessage is true */}
-           {showSuccessMessage && (
-            <Alert
-              variant="success"
-              onClose={() => setShowSuccessMessage(false)}
-              dismissible
-              style={{ position: 'fixed', top: '15%', right: '0', width: '100%', zIndex: 60 }}
-            >
-              Order placed successfully!
-            </Alert>
-          )}
-        </div>
-        <div id="home">
-        <BasicNav handleShowSuccessMessage={handleShowSuccessMessage} />
-        </div>
-        <MyHero />
-        <div id="menu">
-          <MenuSection menuItems={menuItems} />
-        </div>
-        <div id="contact">
-          <MyFooter />
-        </div>
-        
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={(
+            <>
+              {/*should work*/}
+              <div label="alert">
+                {/* Render the Alert only when showSuccessMessage is true */}
+                {showSuccessMessage && (
+                  <Alert
+                    variant="success"
+                    onClose={() => setShowSuccessMessage(false)}
+                    dismissible
+                    style={{ position: 'fixed', top: '15%', right: '0', width: '100%', zIndex: 60 }}
+                  >
+                    Order placed successfully!
+                  </Alert>
+                )}
+              </div>
+              <div id="home">
+                <BasicNav handleShowSuccessMessage={handleShowSuccessMessage} />
+              </div>
+              <MyHero />
+              <div id="menu">
+                <MenuSection menuItems={menuItems} />
+              </div>
+              <div id="contact">
+                <MyFooter />
+              </div>
+            </>
+          )} />
+        </Routes>
       </Router>
     </ShoppingCartProvider>
   );
