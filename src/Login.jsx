@@ -15,14 +15,18 @@ export function Login() {
           <Form className='m-3 pt-3 text-light'>
             <h1 className="h3 my-3 fw-normal text-start"> 🍽️ Please sign in</h1>
             <Form.Floating className="mb-3">
-              <Form.Control type="email" id="floatingInput" placeholder="Email"
+              <Form.Control id="floatingInputCustom"
+                type="email"
+                placeholder="name@example.com"
                 className='bg-secondary' />
-              <label htmlFor="floatingInput">Email address</label>
+              <label htmlFor="floatingInputCustom">Email address</label>
             </Form.Floating>
             <Form.Floating className="mb-3">
-              <Form.Control type="password" id="floatingPassword" placeholder="Password"
+              <Form.Control id="floatingPasswordCustom"
+                type="password"
+                placeholder="Password"
                 className='bg-secondary' />
-              <label htmlFor="floatingPassword">Password</label>
+              <label htmlFor="floatingPasswordCustom">Password</label>
             </Form.Floating>
             <Form.Check className="text-start pb-4">
               <Form.Check.Input type="checkbox" id="flexCheckDefault" />

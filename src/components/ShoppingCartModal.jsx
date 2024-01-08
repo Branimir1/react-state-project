@@ -1,6 +1,6 @@
 // shoppingcartmodal.jsx
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Modal, Button, Badge, ListGroup, Form } from 'react-bootstrap';
 import { useShoppingCart } from './ShoppingCartContext';
 import { db } from '../firebase';

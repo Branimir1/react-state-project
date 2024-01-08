@@ -1,5 +1,4 @@
 // navbar.jsx
-
 import { Nav, Navbar, Container, NavLink } from 'react-bootstrap';
 import ShoppingCartModal from './components/ShoppingCartModal';
 import { Link } from 'react-router-dom';  // Import Link from react-router-dom

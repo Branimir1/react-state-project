@@ -11,6 +11,7 @@ import MyFooter from './Footer.jsx';
 import MyHero from './Hero.jsx';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Login } from './Login.jsx';
+import { Overview } from './Overview.jsx';
 
 
 export default function App() {
@@ -44,6 +45,7 @@ export default function App() {
       <Router>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/orders" element={<Overview />} />
           <Route path="/" element={(
             <>
               {/* <div style={{ width: '1000px', margin: '0 auto' }}> */}
