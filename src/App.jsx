@@ -46,30 +46,33 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/" element={(
             <>
-              {/*should work*/}
-              <div label="alert">
-                {/* Render the Alert only when showSuccessMessage is true */}
-                {showSuccessMessage && (
-                  <Alert
-                    variant="success"
-                    onClose={() => setShowSuccessMessage(false)}
-                    dismissible
-                    style={{ position: 'fixed', top: '15%', right: '0', width: '100%', zIndex: 60 }}
-                  >
-                    Order placed successfully!
-                  </Alert>
-                )}
-              </div>
-              <div id="home">
-                <BasicNav handleShowSuccessMessage={handleShowSuccessMessage} />
-              </div>
-              <MyHero />
-              <div id="menu">
-                <MenuSection menuItems={menuItems} />
-              </div>
-              <div id="contact">
-                <MyFooter />
-              </div>
+              {/* <div style={{ width: '1000px', margin: '0 auto' }}> */}
+
+                {/*should work*/}
+                <div label="alert">
+                  {/* Render the Alert only when showSuccessMessage is true */}
+                  {showSuccessMessage && (
+                    <Alert
+                      variant="success"
+                      onClose={() => setShowSuccessMessage(false)}
+                      dismissible
+                      style={{ position: 'fixed', top: '15%', right: '0', width: '100%', zIndex: 60 }}
+                    >
+                      Order placed successfully!
+                    </Alert>
+                  )}
+                </div>
+                <div id="home">
+                  <BasicNav handleShowSuccessMessage={handleShowSuccessMessage} />
+                </div>
+                <MyHero />
+                <div id="menu">
+                  <MenuSection menuItems={menuItems} />
+                </div>
+                <div id="contact">
+                  <MyFooter />
+                </div>
+             
             </>
           )} />
         </Routes>

@@ -9,7 +9,7 @@ function BasicNav({ handleShowSuccessMessage }) {
 
   return (
 
-    <Navbar className="bg-body-tertiary fixed-top">
+    <Navbar className="bg-body-tertiary fixed-top" >
       <Container>
           <Nav>
             <NavLink as={Link} to="/login">RB🍽️</NavLink>
