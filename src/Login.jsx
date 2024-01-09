@@ -1,14 +1,24 @@
 import React from 'react'
 import { Form, Button, Container } from 'react-bootstrap';
+import {useNavigate} from 'react-router-dom';
 
 
 export function Login() {
+
+  const NavigateTo = useNavigate();
+
+  const handleHomeButtonClick = () => {
+    NavigateTo('/');
+  };
+
+
   return (
-    <div className="py-4 bg-secondary"
+    <div className="py-2 bg-secondary"
       style={{ height: '100%' }}>
       {/* Main content */}
       <Container className='w-100 m-auto d-flex flex-column align-items-start'>
-        <Button variant="primary" className='text-light align-self-start'>
+        <Button variant="primary" className='text-light align-self-start'
+        onClick={handleHomeButtonClick}>
           Home
         </Button>
         <main className='w-100 m-auto' style={{ maxWidth: 330 }}>
