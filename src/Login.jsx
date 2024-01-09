@@ -14,33 +14,42 @@ export function Login() {
     NavigateTo('/');
   };
 
+  const auth = getAuth();
+
   const handleLogin = async (e) => {
     e.preventDefault();
-    //unable to prevent default
-    // sifra je kidrock2
 
-    try {
-      // Use Firebase authentication to sign in the user
-      await auth.signInWithEmailAndPassword(email, password);
-      const auth = getAuth();
-      signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
         const user = userCredential.user;
         console.log(user);
-        // Redirect to "/orders" after successful login
-        NavigateTo('/orders');
+        toast.success('Login successful! Redirecting...', {
+          position: 'top-center',
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+        
+        setTimeout(() => {
+          NavigateTo('/orders');
+        }, 2400);
+
       })
-      
-    } catch (error) {
-      // Display error message using toast
-      toast.error('Invalid email or password', {
-        position: 'top-center',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        toast.error('Invalid email or password', {
+          position: 'top-center',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
       });
-    }
   };
 
   return (
@@ -61,6 +70,7 @@ export function Login() {
                 className='bg-secondary'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                autoComplete="username"
               />
               <label htmlFor="floatingInputCustom">Email address</label>
             </Form.Floating>
@@ -68,15 +78,16 @@ export function Login() {
               <Form.Control
                 id="floatingPasswordCustom"
                 type="password"
-                placeholder="Password"
                 className='bg-secondary'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                autoComplete="current-password"
               />
               <label htmlFor="floatingPasswordCustom">Password</label>
             </Form.Floating>
             <Form.Check className="text-start pb-4">
               <Form.Check.Input type="checkbox" id="flexCheckDefault" />
+              {/* no functionality added for checkbox, purely decorational */}
               <Form.Check.Label htmlFor="flexCheckDefault">Remember me</Form.Check.Label>
             </Form.Check>
             <Button variant="primary" type="submit" className="w-100">

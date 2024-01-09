@@ -1,7 +1,9 @@
 import React, { useState , useEffect } from 'react';
-import { Table } from 'react-bootstrap';
+import { Table , Navbar, Container, Nav } from 'react-bootstrap';
 import { db } from './firebase';
 import { collection, query, getDocs } from "firebase/firestore";
+import { Link } from 'react-router-dom';  // Import Link from react-router-dom
+
 
 export function Overview() {
   const [orders, setOrders] = useState([]);
@@ -25,6 +27,16 @@ export function Overview() {
   }, []);
 
   return (
+    <>
+    <Navbar className="bg-secondary m-auto" >
+      <Container>
+          <Nav>
+            <Nav.Link as={Link} to="/" className="text-light"
+            >Return to Home</Nav.Link>
+          </Nav>    
+      </Container>
+      <Nav.Link as={Link} to="/login" className="text-light px-3">Logout</Nav.Link>
+    </Navbar>
     <Table striped bordered hover responsive variant="dark" size="sm">
       <thead>
         <tr>
@@ -54,5 +66,6 @@ export function Overview() {
         ))}
       </tbody>
     </Table>
+    </>
   );
 }
