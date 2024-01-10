@@ -1,10 +1,9 @@
 // MenuSection.jsx
-
 import React from 'react';
 import { Image } from 'react-bootstrap';
-import PizzaItem from './components/PizzaItem.jsx';
-import pizzaImage from './img/pizza2.jpg'; // Import the image
-import burgerImage from './img/burger2.jpg';
+import PizzaItem from './PizzaItem.jsx';
+import pizzaImage from '../img/pizza2.jpg'; // Import the image
+import burgerImage from '../img/burger2.jpg';
 
 function MenuSection({ menuItems }) {
   return (

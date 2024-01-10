@@ -1,7 +1,8 @@
 // navbar.jsx
-import { Nav, Navbar, Container, NavLink } from 'react-bootstrap';
-import ShoppingCartModal from './components/ShoppingCartModal';
-import { Link } from 'react-router-dom';  // Import Link from react-router-dom
+import { Nav, Navbar, Container } from 'react-bootstrap';
+import ShoppingCartModal from './ShoppingCartModal';
+import { Link } from 'react-router-dom';  
+// Import Link from react-router-dom ima i navlink, will see
 
 
 function BasicNav({ handleShowSuccessMessage }) {
@@ -11,7 +12,7 @@ function BasicNav({ handleShowSuccessMessage }) {
     <Navbar className="bg-body-tertiary fixed-top" >
       <Container>
           <Nav>
-            <NavLink as={Link} to="/login">RB🍽️</NavLink>
+            <Nav.Link as={Link} to="/login">RB🍽️</Nav.Link>
             <Nav.Link href="#home" >Home</Nav.Link>
             <Nav.Link href="#menu" >Menu</Nav.Link>
             <Nav.Link href="#contact" >Contact</Nav.Link>         

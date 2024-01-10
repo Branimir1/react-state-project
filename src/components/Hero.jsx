@@ -1,6 +1,6 @@
 import React, {useRef} from 'react'
 import Button from 'react-bootstrap/Button';
-import pizzaHero from './img/wallpaper_pizza.jpg';
+import pizzaHero from '../img/wallpaper_pizza.jpg';
 
 function MyHero() {
 

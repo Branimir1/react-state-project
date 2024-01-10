@@ -1,17 +1,16 @@
 //app.jsx
-
 import './App.css'
 import React, { useEffect, useState } from 'react';
-import BasicNav from './Navbar.jsx'
+import BasicNav from './components/Navbar.jsx'
 import { ShoppingCartProvider } from './components/ShoppingCartContext.jsx';
 import { fetchMenuItems } from './menuService';
 import { Alert } from 'react-bootstrap';
-import MenuSection from './MenuSection.jsx'; // Import the MenuSection component
-import MyFooter from './Footer.jsx';
-import MyHero from './Hero.jsx';
+import MenuSection from './components/MenuSection.jsx'; // Import the MenuSection component
+import MyFooter from './components/Footer.jsx';
+import MyHero from './components/Hero.jsx';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Login } from './Login.jsx';
-import { Overview } from './Overview.jsx';
+import { Login } from './components/Login.jsx';
+import { Overview } from './components/Overview.jsx';
 
 
 export default function App() {
@@ -30,7 +29,6 @@ export default function App() {
       try {
         const data = await fetchMenuItems();
         setMenuItems(data.categories);
-        //console.log(data);
         // Set the state with the array of pizza items
       } catch (error) {
         console.log("Error catching data:", error);
@@ -48,9 +46,6 @@ export default function App() {
           <Route path="/orders" element={<Overview />} />
           <Route path="/" element={(
             <>
-              {/* <div style={{ width: '1000px', margin: '0 auto' }}> */}
-
-                {/*should work*/}
                 <div label="alert">
                   {/* Render the Alert only when showSuccessMessage is true */}
                   {showSuccessMessage && (
@@ -73,8 +68,7 @@ export default function App() {
                 </div>
                 <div id="contact">
                   <MyFooter />
-                </div>
-             
+                </div>   
             </>
           )} />
         </Routes>
