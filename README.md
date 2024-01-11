@@ -11,5 +11,12 @@ The following project is a React web application with a mobile first approach fo
 - React Router is used for app navigation
 - Firebase is used for user authentification, the orders are saved in the Firestore database, the admin can then check all the saved orders
 
+## Screenshots
+
+<img src="https://github.com/Branimir1/react-state-project/blob/main/src/img/Screenshots/screen1.jpg" width="430" height="830">&nbsp;&nbsp;
+<img src="https://github.com/Branimir1/react-state-project/blob/main/src/img/Screenshots/screen1.jpg" width="430" height="830">&nbsp;&nbsp;
+
+
+
 ## Note
 To get the app running on your machine you would need to paste your own Firebase API keys into the 'firebase.js' file or inside of the .env file. 
