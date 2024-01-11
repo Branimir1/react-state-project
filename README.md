@@ -14,8 +14,13 @@ The following project is a React web application with a mobile first approach fo
 ## Screenshots
 
 <img src="https://github.com/Branimir1/react-state-project/blob/main/src/img/Screenshots/screen1.jpg" width="430" height="830">&nbsp;&nbsp;
-<img src="https://github.com/Branimir1/react-state-project/blob/main/src/img/Screenshots/screen1.jpg" width="430" height="830">&nbsp;&nbsp;
-
+<img src="https://github.com/Branimir1/react-state-project/blob/main/src/img/Screenshots/screen2.jpg" width="430" height="830">&nbsp;&nbsp;
+<img src="https://github.com/Branimir1/react-state-project/blob/main/src/img/Screenshots/screen3.jpg" width="430" height="830">&nbsp;&nbsp;
+<img src="https://github.com/Branimir1/react-state-project/blob/main/src/img/Screenshots/screen4.jpg" width="430" height="830">&nbsp;&nbsp;
+<img src="https://github.com/Branimir1/react-state-project/blob/main/src/img/Screenshots/screen5.jpg" width="430" height="830">&nbsp;&nbsp;
+<img src="https://github.com/Branimir1/react-state-project/blob/main/src/img/Screenshots/screen6.jpg" width="430" height="830">&nbsp;&nbsp;
+<img src="https://github.com/Branimir1/react-state-project/blob/main/src/img/Screenshots/screen8.jpg" width="430" height="830">&nbsp;&nbsp;
+<img src="https://github.com/Branimir1/react-state-project/blob/main/src/img/Screenshots/screen9.jpg" width="430" height="830">&nbsp;&nbsp;
 
 
 ## Note
