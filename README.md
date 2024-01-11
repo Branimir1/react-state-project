@@ -1,8 +1,15 @@
-# React + Vite
+## Small business food ordering app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The following project is a React web application with a mobile first approach for a small business where public users can place food orders.
 
-Currently, two official plugins are available:
+## Notable features:
+- Modern architecture, all components are seperated in different JSX files making the code more readable
+- Design is mostly done React Bootstrap framework
+(react-toastify being used for login toasts)
+- Form validation with Bootstrap and success confirmation
+- React hooks are used for handling most of the logic
+- React Router is used for app navigation
+- Firebase is used for user authentification, the orders are saved in the Firestore database, the admin can then check all the saved orders
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Note
+To get the app running on your machine you would need to paste your own Firebase API keys into the 'firebase.js' file or inside of the .env file. 
